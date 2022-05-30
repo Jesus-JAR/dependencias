@@ -3,7 +3,6 @@
 echo Instalar php 8.1
 echo actualizar sistema
 sudo apt update && sudo apt upgrade -y
-sudo apt-get install ca-certificates apt-transport-https software-properties-common wget curl lsb-release -y
 curl -sSL https://packages.sury.org/php/README.txt | sudo bash -x
 sudo apt update
 sudo apt upgrade
