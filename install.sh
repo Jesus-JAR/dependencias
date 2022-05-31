@@ -69,3 +69,13 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 echo exit finish install..
 sleep 3s
+
+echo Perimos storage y www-data
+sleep 5s
+
+cd /var/www/html/time-track
+sudo chmod -R 775 storage/
+sudo chgrp -R www-data
+composer install 
+echo finish
+sleep 5s
