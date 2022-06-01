@@ -1,5 +1,33 @@
 #!/bin/bash
 
+echo php 8.1
+echo actualizar sistema
+sleep 5s
+
+sudo apt update && sudo apt upgrade -y
+curl -sSL https://packages.sury.org/php/README.txt | sudo bash -x
+sudo apt update
+sudo apt upgrade
+
+echo Instalar php 8.1
+sleep 5s
+
+sudo apt install php8.1 libapache2-mod-php8.1 -y
+
+echo Deshabilitar php 8.0
+sleep 5s
+
+sudo a2dismod php8.0
+
+echo habilitar php 8.1
+sleep 5s
+sudo a2enmod php8.1
+
+sudo systemctl restart apache2
+
+echo Instalado php 8.1
+echo exit.
+
 echo Instalar npm debian
 sleep 5s
 
@@ -42,12 +70,19 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 echo exit finish install..
 sleep 3s
 
+echo renombrar env.example por env y copiar
+sleep 3s
+sudo cp .env.example .env
+
 echo Perimos storage y www-data
 sleep 5s
 
-cd /var/www/html/time-track
-sudo chmod -R 775 storage/
-sudo chgrp -R www-data
-composer install 
-echo finish
+sudo chmod -R 777 storage/
+sudo chgrp -R www-data public/
+
+echo composer install y npm install
 sleep 5s
+composer install 
+npm install
+echo finish
+sleep 2s
